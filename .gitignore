@@ -1,5 +1,6 @@
 config.py
 *.pdf
 *.txt
-__*
 .*
+__py*
+test*
