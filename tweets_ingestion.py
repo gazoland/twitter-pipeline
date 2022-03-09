@@ -45,7 +45,7 @@ def user_timelines_url(user_id, last_tweet_id, pag_token):
     return url
 
 
-def main():
+def ingest_tweets():
     ids = read_user_ids("user_ids.txt")
     user_tweet = get_last_tweets(ids)
     tweets_data = {"data": []}
@@ -71,4 +71,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    ingest_tweets()

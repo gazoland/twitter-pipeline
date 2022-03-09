@@ -26,7 +26,7 @@ def user_file_creation(datafile):
     return user_data_filename
 
 
-def main():
+def ingest_users():
     url = users_url("usernames.txt")
     user_data = resources.connect_to_endpoint(url)
     user_data_filename = user_file_creation(user_data)
@@ -35,4 +35,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    ingest_users()
