@@ -1,10 +1,5 @@
 import psycopg2.extras
-import time
-from tqdm import tqdm
 import os
-import pandas as pd
-import numpy as np
-
 
 DB_HOST = os.environ.get("PG_DB_HOST")
 DB_USER = os.environ.get("PG_DB_USER")
