@@ -37,6 +37,7 @@ def process_users_metrics(data):
         dt["following"] = j["public_metrics"]["following_count"]
         dt["tweets"] = j["public_metrics"]["tweet_count"]
         dt["listed"] = j["public_metrics"]["listed_count"]
+        dt["created_at"] = data["created_at"]
 
         df_unit = pd.DataFrame([list(dt.values())], columns=list(dt.keys()))
         # df = df.append(dt, ignore_index=True)
@@ -74,6 +75,6 @@ def etl_user_metrics(s3_file):
 
 
 if __name__ == '__main__':
-    file = ""
+    file = "data/users/users_20220308.txt"
     etl_users(file)
     etl_user_metrics(file)
