@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import resources
 
 
@@ -29,6 +29,7 @@ def user_file_creation(datafile):
 def ingest_users():
     url = users_url("usernames.txt")
     user_data = resources.connect_to_endpoint(url)
+    user_data["created_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
     user_data_filename = user_file_creation(user_data)
     resources.upload_to_s3(user_data_filename, path="data/users/")
     resources.delete_file(user_data_filename)
