@@ -1,13 +1,10 @@
 from tqdm import tqdm
 import pandas as pd
-from pprint import pprint
 import resources
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 pd.set_option('display.max_columns', None)
 pd.options.mode.chained_assignment = None  # default='warn'
-
-### Function for checking if tweet_ids already are in the database? perhaps
 
 
 def process_tweets(data):
@@ -78,7 +75,7 @@ def etl_tweets(s3_file):
         dataframe=df_tweets,
         schema="twitter",
         table="tweets",
-        conflict=False,
+        conflict=True,
         conflict_column="id"
     )
     db_conn.close()
@@ -93,13 +90,12 @@ def etl_tweet_entities(s3_file):
         dataframe=df_tweet_entities,
         schema="twitter",
         table="tweet_entities",
-        conflict=True,
-        conflict_column="tweet_id"
+        conflict=False
     )
     db_conn.close()
 
 
 if __name__ == "__main__":
-    file = ""
+    file = "path/filename"
     etl_tweets(file)
     etl_tweet_entities(file)
