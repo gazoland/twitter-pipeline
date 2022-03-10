@@ -18,7 +18,7 @@ def get_last_tweets(user_list):
             SELECT t.user_id, MAX(t.id) last_tweet 
             FROM twitter.tweets t
             GROUP BY t.user_id
-            ORDER BY t.user_id DESC
+            ORDER BY t.user_id DESC;
         """
     cur.execute(qry)
     db_users_tweets = {x[0]: x[1] for x in cur.fetchall()}
