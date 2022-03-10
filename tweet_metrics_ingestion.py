@@ -13,7 +13,7 @@ def get_tweets_to_update(interval_size, interval_unit):
     conn = resources.connect_to_database()
     cur = conn.cursor()
     qry = """
-                SELECT t.id last_tweet 
+                SELECT t.id tweet_id 
                 FROM twitter.tweets t
                 WHERE t.created_at > CURRENT_DATE - INTERVAL '{}' {}
                 ORDER BY t.created_at ASC
@@ -33,7 +33,7 @@ def tweets_url(ids_string):
 
 
 def ingest_tweet_metrics():
-    ids = get_tweets_to_update(3, 'day')
+    ids = get_tweets_to_update(8, 'day')
     id_sets = [ids[i: i + 100] for i in range(0, len(ids), 100)]
     tweet_metrics_data = {"data": []}
     for id_set in tqdm(id_sets):
@@ -42,7 +42,7 @@ def ingest_tweet_metrics():
         resp = resources.connect_to_endpoint(url)
         tweet_metrics_data["data"].extend(resp["data"])
 
-    tweets_metrics_filename = f"t_metrics{datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S')}.txt"
+    tweets_metrics_filename = f"t_metrics_{datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S')}.txt"
     resources.write_json_file(tweet_metrics_data, tweets_metrics_filename)
     resources.upload_to_s3(tweets_metrics_filename, path="data/tweet-metrics/")
     resources.delete_file(tweets_metrics_filename)
