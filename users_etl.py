@@ -75,6 +75,6 @@ def etl_user_metrics(s3_file):
 
 
 if __name__ == '__main__':
-    file = "data/users/users_20220308.txt"
+    file = "path/filename"
     etl_users(file)
     etl_user_metrics(file)
