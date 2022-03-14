@@ -59,3 +59,28 @@ def insert_batch(conn, dataframe, schema, table, conflict: bool, conflict_column
     cursor.close()
     # conn.close()
     print('Done')
+
+
+def update_batch(conn, dataframe, schema, table, include_columns, where_columns):
+
+    df = dataframe[include_columns]
+
+    tuples = [tuple(x) for x in df.to_numpy()]
+    vals = '%s,' * (len(tuples[0]) - 1) + '%s'
+    update_string = ",".join([f"{c}=${list(df).index(c)}" for c in list(df) if c not in where_columns])
+    where_string = " AND ".join([f"{c}=${list(df).index(c)}" for c in list(df) if c in where_columns])
+
+    qry_prepare = f"""
+        PREPARE stm_update AS
+            UPDATE {schema}.{table} SET {update_string} WHERE {where_string};"""
+    qry_execute = f"EXECUTE stm_update ({vals});"
+    qry_deallocate = "DEALLOCATE stm_update;"
+
+    cursor = conn.cursor()
+    cursor.execute(qry_prepare)
+    psycopg2.extras.execute_batch(cursor, qry_execute, tuples, page_size=100)
+    cursor.execute(qry_deallocate)
+    conn.commit()
+    cursor.close()
+    # conn.close()
+    print('Done')
