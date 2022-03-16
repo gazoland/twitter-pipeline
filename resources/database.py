@@ -67,8 +67,8 @@ def update_batch(conn, dataframe, schema, table, include_columns, where_columns)
 
     tuples = [tuple(x) for x in df.to_numpy()]
     vals = '%s,' * (len(tuples[0]) - 1) + '%s'
-    update_string = ",".join([f"{c}=${list(df).index(c)}" for c in list(df) if c not in where_columns])
-    where_string = " AND ".join([f"{c}=${list(df).index(c)}" for c in list(df) if c in where_columns])
+    update_string = ",".join([f"{c}=${list(df).index(c) + 1}" for c in list(df) if c not in where_columns])
+    where_string = " AND ".join([f"{c}=${list(df).index(c) + 1}" for c in list(df) if c in where_columns])
 
     qry_prepare = f"""
         PREPARE stm_update AS
