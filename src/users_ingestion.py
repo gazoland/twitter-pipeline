@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timezone
 import resources
 
@@ -27,7 +28,7 @@ def user_file_creation(datafile):
 
 
 def ingest_users(ti):
-    url = users_url("usernames.txt")
+    url = users_url(os.path.join(os.getcwd(), "src/usernames.txt"))
     user_data = resources.connect_to_endpoint(url)
     user_data["created_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
     user_data_filename = user_file_creation(user_data)
@@ -35,8 +36,3 @@ def ingest_users(ti):
     resources.upload_to_s3(user_data_filename, path=path)
     resources.delete_file(user_data_filename)
     ti.xcom_push(key="latest_user_data_file", value=path + user_data_filename)
-
-
-"""
-if __name__ == "__main__":
-    ingest_users()"""
