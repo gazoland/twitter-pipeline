@@ -38,7 +38,7 @@ user_dag = DAG(
 )
 
 ingest_users_task = PythonOperator(
-    task_id="user_ingestion",
+    task_id="users_ingestion",
     python_callable=ingest_users,
     dag=user_dag
 )
