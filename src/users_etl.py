@@ -46,7 +46,7 @@ def process_users_metrics(data):
 
 
 def etl_users(ti):
-    s3_file = ti.xcom_pull(key="latest_user_data_file", task_ids="user_ingestion")
+    s3_file = ti.xcom_pull(key="latest_user_data_file", task_ids="users_ingestion")
     user_data = resources.read_s3_file(s3_file)
     df_user = process_users(user_data)
     db_conn = resources.connect_to_database()
@@ -62,7 +62,7 @@ def etl_users(ti):
 
 
 def etl_user_metrics(ti):
-    s3_file = ti.xcom_pull(key="latest_user_data_file", task_ids="user_ingestion")
+    s3_file = ti.xcom_pull(key="latest_user_data_file", task_ids="users_ingestion")
     user_data = resources.read_s3_file(s3_file)
     df_user_metrics = process_users_metrics(user_data)
     db_conn = resources.connect_to_database()
