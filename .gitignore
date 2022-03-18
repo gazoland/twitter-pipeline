@@ -1,6 +1,7 @@
 config.py
 *.pdf
 *.txt
+!usernames.txt
 .*
 __py*
 test*
