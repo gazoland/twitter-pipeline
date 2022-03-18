@@ -45,7 +45,7 @@ def user_timelines_url(user_id, last_tweet_id, pag_token):
     return url
 
 
-def ingest_tweets():
+def ingest_tweets(ti):
     ids = read_user_ids("user_ids.txt")
     user_tweet = get_last_tweets(ids)
     tweets_data = {"data": []}
@@ -65,10 +65,8 @@ def ingest_tweets():
                 next_token = None
 
     tweets_filename = f"tweets_{datetime.strftime(datetime.today(), '%Y%m%d')}.txt"
+    path = "data/tweets/"
     resources.write_json_file(tweets_data, tweets_filename)
-    resources.upload_to_s3(tweets_filename, path="data/tweets/")
+    resources.upload_to_s3(tweets_filename, path=path)
     resources.delete_file(tweets_filename)
-
-
-if __name__ == "__main__":
-    ingest_tweets()
+    ti.push_xcom(key="latest_tweets_data_file", value=path + tweets_filename)
