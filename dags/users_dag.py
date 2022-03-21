@@ -11,7 +11,7 @@ add_dir = [os.path.abspath(os.path.join(__file__, "../..")), os.path.abspath(os.
            os.path.abspath(os.path.join(__file__, "../../src/resources"))]
 [sys.path.append(direc) for direc in add_dir]
 
-# Importing tasks fucntions
+# Importing tasks functions
 from src.users_etl import etl_users, etl_user_metrics
 from src.users_ingestion import ingest_users
 
@@ -26,7 +26,7 @@ default_args = {
     "email_on_failure": True,
     "email_on_retry": False,
     "retries": 2,
-    "retry_delay": timedelta(seconds=45),
+    "retry_delay": timedelta(seconds=45)
 }
 
 user_dag = DAG(
@@ -54,6 +54,5 @@ etl_user_metrics_task = PythonOperator(
     python_callable=etl_user_metrics,
     dag=user_dag
 )
-
 
 ingest_users_task >> [etl_users_task, etl_user_metrics_task]
