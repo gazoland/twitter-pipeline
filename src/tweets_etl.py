@@ -67,7 +67,7 @@ def process_tweet_entities(data):
 
 
 def etl_tweets(ti):
-    s3_file = ti.xcom_pull(key="latest_tweets_data_file", task_ids="tweets_ingestion")
+    s3_file = ti.xcom_pull(key="latest_tweets_data_file", task_ids="twitter_tweets_ingestion")
     tweets_data = resources.read_s3_file(s3_file)
     df_tweets = process_tweets(tweets_data)
     db_conn = resources.connect_to_database()
@@ -83,7 +83,7 @@ def etl_tweets(ti):
 
 
 def etl_tweet_entities(ti):
-    s3_file = ti.xcom_pull(key="latest_tweets_data_file", task_ids="tweets_ingestion")
+    s3_file = ti.xcom_pull(key="latest_tweets_data_file", task_ids="twitter_tweets_ingestion")
     tweets_data = resources.read_s3_file(s3_file)
     df_tweet_entities = process_tweet_entities(tweets_data)
     db_conn = resources.connect_to_database()

@@ -69,4 +69,4 @@ def ingest_tweets(ti):
     resources.write_json_file(tweets_data, tweets_filename)
     resources.upload_to_s3(tweets_filename, path=path)
     resources.delete_file(tweets_filename)
-    ti.push_xcom(key="latest_tweets_data_file", value=path + tweets_filename)
+    ti.xcom_push(key="latest_tweets_data_file", value=path + tweets_filename)

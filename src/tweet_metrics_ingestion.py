@@ -33,7 +33,7 @@ def tweets_url(ids_string):
     return url
 
 
-def ingest_tweet_metrics():
+def ingest_tweet_metrics(ti):
     ids = get_tweets_to_update("8", 'day')
     id_sets = [ids[i: i + 100] for i in range(0, len(ids), 100)]
     tweet_metrics_data = {"data": []}
@@ -44,10 +44,8 @@ def ingest_tweet_metrics():
         tweet_metrics_data["data"].extend(resp["data"])
 
     tweets_metrics_filename = f"t_metrics_{datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S')}.txt"
+    path = "data/tweet-metrics/"
     resources.write_json_file(tweet_metrics_data, tweets_metrics_filename)
-    resources.upload_to_s3(tweets_metrics_filename, path="data/tweet-metrics/")
+    resources.upload_to_s3(tweets_metrics_filename, path=path)
     resources.delete_file(tweets_metrics_filename)
-
-
-if __name__ == "__main__":
-    ingest_tweet_metrics()
+    ti.xcom_push(key="latest_tweet_metrics_data_file", value=path + tweets_metrics_filename)

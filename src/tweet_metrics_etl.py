@@ -16,7 +16,8 @@ def process_tweet_metrics(data):
     return df
 
 
-def main(s3_file):
+def etl_tweet_metrics(ti):
+    s3_file = ti.xcom_pull(key="latest_tweet_metrics_data_file", task_ids="twitter_tweet_metrics_ingestion")
     tweet_metrics_data = resources.read_s3_file(s3_file)
     df_tweet_metrics = process_tweet_metrics(tweet_metrics_data)
     db_conn = resources.connect_to_database()
@@ -29,8 +30,3 @@ def main(s3_file):
         where_columns=["id", ]
     )
     db_conn.close()
-
-
-if __name__ == "__main__":
-    file = "path/filename"
-    main(file)
