@@ -2,6 +2,7 @@ config.py
 *.pdf
 *.txt
 !usernames.txt
+!requirements.txt
 .*
 __py*
 test*
