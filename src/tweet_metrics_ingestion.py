@@ -1,15 +1,9 @@
 import resources
-from pprint import pprint
 from tqdm import tqdm
 from datetime import datetime
 
 
 def get_tweets_to_update(interval_size, interval_unit):
-    """
-    :param interval_size: int
-    :param interval_unit: str -> enum(day,)
-    :return: list
-    """
     conn = resources.connect_to_database()
     cur = conn.cursor()
     qry = """
@@ -19,7 +13,7 @@ def get_tweets_to_update(interval_size, interval_unit):
                 ORDER BY t.created_at ASC
             """.format(interval_size, interval_unit)
     qry2 = "select id from twitter.tweets;"
-    cur.execute(qry2)
+    cur.execute(qry)
     tweets_list = [t[0] for t in cur.fetchall()]
     cur.close()
     conn.close()
@@ -34,7 +28,7 @@ def tweets_url(ids_string):
 
 
 def ingest_tweet_metrics(ti):
-    ids = get_tweets_to_update("8", 'day')
+    ids = get_tweets_to_update("20", 'day')
     id_sets = [ids[i: i + 100] for i in range(0, len(ids), 100)]
     tweet_metrics_data = {"data": []}
     for id_set in tqdm(id_sets):
