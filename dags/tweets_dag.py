@@ -32,7 +32,7 @@ tweets_dag = DAG(
     "twitter_tweets_dag",
     default_args=default_args,
     description="ETL DAG for tweet data in our twitter data pipeline.",
-    schedule_interval="35 8 * * *",
+    schedule_interval="20 */4 * * *",
     tags=["twitter", ]
 )
 
