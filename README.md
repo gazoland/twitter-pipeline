@@ -57,7 +57,11 @@ The project architecture and the technologies used are shown as follows:
 **PostgreSQL**: the chosen RDBMS. Access from Python using psycopg2.
 
 **Apache Airflow**: orchestration duties.
+
 ## Data Model
+
+Transformed data will be in Star Schema.
+
 ### RDBMS Schema
 
 ![database-schema](https://user-images.githubusercontent.com/68711010/162328942-d5031a9a-5b83-4864-80c7-d3453e1e6c95.png)
