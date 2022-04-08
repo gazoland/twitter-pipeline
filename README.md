@@ -25,7 +25,7 @@ This information will be collected once per day.
 2 - We also want collect data about all these users' tweets throughout the year of 2022 since Jan. 1st. Information about each tweet will include: content (text and entities mentioned within the text), date created, conversation id, user_id being replied to, referenced tweets and public metrics (total of likes, retweets, replies and quotes).
 The tweets data will be collected every 4 hours.
 
-3 - Since the tweets' public metrics change over time, we will need to request this information many times for the same tweets. This step will run separately from the previous one.
+3 - Since the tweets' public metrics change over time, we will need to request this information many times for the same tweets. This step will run separately from the previous one, every 2 hours.
 
 ### 2. ETL
 
@@ -65,3 +65,5 @@ Transformed data will be in Star Schema.
 ### RDBMS Schema
 
 ![database-schema](https://user-images.githubusercontent.com/68711010/162328942-d5031a9a-5b83-4864-80c7-d3453e1e6c95.png)
+
+- Future additions will include a Rest API for adding new Twitter users to the list integrated with functions on AWS Lambda.
