@@ -42,7 +42,7 @@ The project architecture and the technologies used are shown as follows:
 
 **AWS**: will provide all the required cloud infrastructure. Services used include:
 
-- 	EC2: one instance will be hosting Apache Airflow;
+- EC2: one instance will be hosting Apache Airflow;
 
 -	S3: a bucket will serve as the Datalake;
 
