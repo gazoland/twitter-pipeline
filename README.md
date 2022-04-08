@@ -9,6 +9,7 @@ As data is loaded into the Datalake, it will be processed and transformed into a
 ## Project Architecture
 
 The project is divided into two stages: 
+
 1 - The ingestion stage: Retrieving data from the Twitter API into the Datalake; 
 2 - The ETL stage: Extracting, transforming and loading the data into a RDBMS.
 
