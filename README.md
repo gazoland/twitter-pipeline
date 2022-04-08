@@ -10,8 +10,9 @@ As data is loaded into the Datalake, it will be processed and transformed into a
 
 The project is divided into two stages: 
 
-1 - The ingestion stage: Retrieving data from the Twitter API into the Datalake; 
-2 - The ETL stage: Extracting, transforming and loading the data into a RDBMS.
+- The ingestion stage: Retrieving data from the Twitter API into the Datalake; 
+
+- The ETL stage: Extracting, transforming and loading the data into a RDBMS.
 
 ### 1. Ingestion
 
@@ -35,6 +36,27 @@ The project architecture and the technologies used are shown as follows:
 
 ![pipeline](https://user-images.githubusercontent.com/68711010/162328922-168c1e28-8b92-4961-b9cc-1d6a6181c83f.png)
 
+## Technologies
+
+**Python**: all scripts, as well as the Airflow Dags will be written in Python. 
+
+**AWS**: will provide all the required cloud infrastructure. Services used include:
+
+- 	EC2: one instance will be hosting Apache Airflow;
+
+-	S3: a bucket will serve as the Datalake;
+
+-	RDS: one instance will host the RDBMS used;
+
+-	LakeFormation: for helping in the creation of the Datalake;
+
+-	Glue: crawlers will be used for mapping the data and creating a metastore;
+
+-	boto3: AWS Software Development Kit for Python.
+
+**PostgreSQL**: the chosen RDBMS. Access from Python using psycopg2.
+
+**Apache Airflow**: orchestration duties.
 ## Data Model
 ### RDBMS Schema
 
