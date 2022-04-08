@@ -38,7 +38,7 @@ The project architecture and the technologies used are shown as follows:
 
 ## Technologies
 
-**Python**: all scripts, as well as the Airflow Dags will be written in Python. 
+**Python**: all scripts, as well as the Airflow Dags will be written in Python. Requests to the Twitter API will be made with the requests library (Bearer Token needed).
 
 **AWS**: will provide all the required cloud infrastructure. Services used include:
 
@@ -52,7 +52,7 @@ The project architecture and the technologies used are shown as follows:
 
 -	Glue: crawlers will be used for mapping the data and creating a metastore;
 
--	boto3: AWS Software Development Kit for Python.
+-	boto3: AWS Software Development Kit for Python (Access Key ID and Secret Access Key needed).
 
 **PostgreSQL**: the chosen RDBMS. Access from Python using psycopg2.
 
