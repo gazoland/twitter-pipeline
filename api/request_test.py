@@ -11,7 +11,7 @@ def test_get(resource):
 
 
 def test_post(resource):
-    resp = requests.request("POST", url=BASE + resource, data={"username": "john,joe"})
+    resp = requests.request("POST", url=BASE + resource, data={"usernames": "john,joe"})
     # resp = requests.post(BASE+resource, data={"username": "john"})
     print(resp.json())
 
