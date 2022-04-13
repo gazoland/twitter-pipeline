@@ -1,6 +1,6 @@
 config.py
-api/
 twitter-env/
+api-env/
 *.pdf
 *.txt
 !usernames.txt
@@ -9,4 +9,5 @@ twitter-env/
 !.docker-env
 __py*
 test*
+server_test.py
 *.dockerfile
