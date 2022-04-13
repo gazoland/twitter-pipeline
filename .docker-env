@@ -1,0 +1,8 @@
+TWITTER_BEARER_TOKEN=<your twitter api bearer token>
+S3_ACCESS_KEY_ID=<your AWS access key with permissions to access S3>
+S3_SECRET_ACCESS_KEY=<your AWS secret access key with permissions to access S3>
+S3_DATALAKE_BUCKET=<your S3 datalake bucket name>
+PG_DB_HOST=<postgres host>
+PG_DB_USER=<postgres user>
+PG_DB_PWD=<postgres password>
+PG_DB_NAME=<postgres database name>
