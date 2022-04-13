@@ -28,7 +28,7 @@ def tweets_url(ids_string):
 
 
 def ingest_tweet_metrics(ti):
-    ids = get_tweets_to_update("20", 'day')
+    ids = get_tweets_to_update("'20'", 'day')
     id_sets = [ids[i: i + 100] for i in range(0, len(ids), 100)]
     tweet_metrics_data = {"data": []}
     for id_set in tqdm(id_sets):
