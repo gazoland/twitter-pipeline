@@ -4,6 +4,7 @@ config.py
 !usernames.txt
 !requirements.txt
 .*
+!.docker-env
 __py*
 test*
 airflow-venv
