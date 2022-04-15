@@ -1,4 +1,4 @@
-from flask_restx import Resource, reqparse
+from flask_restx import Resource, reqparse, abort
 from api import api_resources
 
 
@@ -9,7 +9,7 @@ class Users(Resource):
 
     def post(self):
         users_post_args = reqparse.RequestParser()
-        users_post_args.add_argument("usernames", type=str, help="Twitter usernames", location="form", required=True)
+        users_post_args.add_argument("usernames", type=str, help="Twitter usernames required", location="form", required=True)
         args = users_post_args.parse_args()
 
         # ERRORS:
@@ -19,16 +19,16 @@ class Users(Resource):
 
         if all(all_new):
             add_usernames(*passed_users, current_filename="../src/usernames.txt", new_filename="../src/usernames.txt")
-            return f"Added usernames: {', '.join(passed_users)}"
+            return f"Added usernames: {', '.join(passed_users)}", 201
 
         else:
-            return f"Error. These users are already listed: {', '.join(existing_users)}"
+            abort_post_existing_users(*existing_users)
 
         # Add tasks with AWS Lambda functions
 
     def delete(self):
         users_delete_args = reqparse.RequestParser()
-        users_delete_args.add_argument("usernames", type=str, help="Twitter usernames", location="form", required=True)
+        users_delete_args.add_argument("usernames", type=str, help="Twitter usernames required", location="form", required=True)
         args = users_delete_args.parse_args()
 
         passed_users = args["usernames"].split(",")
@@ -64,3 +64,7 @@ def remove_usernames(*args, current_filename, new_filename):
     not_found_users = [u for u in args if u not in usernames]
     api_resources.write_text_file(updated_users, filename=new_filename)
     return updated_users, deleted_users, not_found_users
+
+
+def abort_post_existing_users(*args):
+    return abort(400, message=f"Error. These users are already listed: {', '.join(args)}")
