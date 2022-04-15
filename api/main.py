@@ -10,7 +10,7 @@ api = Api(
     version="1.0",
     title="Twitter Pipeline API",
     description="A simple API for the Twitter Data Pipeline project.",
-    doc="/docs"
+    doc="/v1/docs"
 )
 
 api.add_resource(Users, "/v1/users")
