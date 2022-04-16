@@ -15,5 +15,11 @@ api = Api(
 
 api.add_resource(Users, "/v1/users")
 
+
+@app.errorhandler(404)
+def abort_notfound(e):
+    return {"message": "Error 404. Resource not found."}, 404
+
+
 if __name__ == "__main__":
     app.run()
