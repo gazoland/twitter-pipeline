@@ -4,7 +4,6 @@ import requests
 import json
 
 BASE = "http://127.0.0.1:5000/v1/"
-# headers={"Content-type": "application/json"},
 API_TOKEN = os.environ.get("API_TOKEN")
 headers = {"Accept": "application/json",
            "Authorization": f"Bearer {API_TOKEN}"}
@@ -28,7 +27,15 @@ def test_delete(resource):
     print(resp)
 
 
+def test_unexisting_route(resource):
+    resp = requests.request("GET", url=BASE + resource, headers=headers)
+    print(resp)
+    print(resp.text)
+    print(resp.json())
+
+
 if __name__ == "__main__":
     test_get("users")
     test_post("users")
     test_delete("users")
+    test_unexisting_route("fail")
