@@ -9,7 +9,7 @@ API_TOKEN = os.environ.get("API_TOKEN")
 
 @auth.verify_token
 def verify_token(token):
-    return token == API_TOKEN
+    return token == API_TOKEN if token == API_TOKEN else abort_unauthorized_access()
 
 
 class Users(Resource):
@@ -80,4 +80,8 @@ def remove_usernames(*args, current_filename, new_filename):
 
 
 def abort_post_existing_users(*args):
-    return abort(409, message=f"Error. These users are already listed: {', '.join(args)}")
+    return abort(409, message=f"Error 409. These users are already listed: {', '.join(args)}")
+
+
+def abort_unauthorized_access():
+    return abort(401, message="Unauthorized Access. Authentication token required")
