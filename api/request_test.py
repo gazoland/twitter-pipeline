@@ -1,9 +1,7 @@
 import os
-
 import requests
-import json
 
-BASE = "http://127.0.0.1:5000/v1/"
+BASE = "http://127.0.0.1:5021/v1/"
 API_TOKEN = os.environ.get("API_TOKEN")
 headers = {"Accept": "application/json",
            "Authorization": f"Bearer {API_TOKEN}"}
