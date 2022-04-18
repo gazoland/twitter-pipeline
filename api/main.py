@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_restx import Api
+import os
 
-from controllers.users import Users
+from api.controllers.users import Users
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -22,4 +23,4 @@ def abort_notfound(e):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=os.environ.get("API_PORT"), host="0.0.0.0")
