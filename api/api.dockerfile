@@ -9,6 +9,10 @@ ARG PORT=5020
 ENV API_PORT=$PORT
 EXPOSE $PORT
 
+# Debug mode when running the API app:
+ARG API_DEBUG=false
+ENV API_DEBUG=$API_DEBUG
+
 # Adding root directory as python path
 ENV PYTHONPATH "${PYTHONPATH}:/pipeline-api"
 
