@@ -1,4 +1,4 @@
-# Base image from ubuntu
+# Base image from python
 FROM python:3.8.10
 
 # Create working directory for the container
@@ -9,11 +9,11 @@ ARG PORT=5020
 ENV API_PORT=$PORT
 EXPOSE $PORT
 
-# Debug mode when running the API app:
+# Debug mode when running the API app
 ARG API_DEBUG=false
 ENV API_DEBUG=$API_DEBUG
 
-# Adding root directory as python path
+# Adding directory as python path
 ENV PYTHONPATH "${PYTHONPATH}:/pipeline-api"
 
 # Copy project content into the working directory
