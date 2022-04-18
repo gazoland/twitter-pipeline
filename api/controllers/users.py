@@ -1,7 +1,7 @@
 import os
 from flask_restx import Resource, reqparse, abort
-from api import api_resources
 from flask_httpauth import HTTPTokenAuth
+from api import api_resources
 
 auth = HTTPTokenAuth()
 API_TOKEN = os.environ.get("API_TOKEN")
