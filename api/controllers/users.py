@@ -5,6 +5,7 @@ from api import api_resources
 
 auth = HTTPTokenAuth()
 API_TOKEN = os.environ.get("API_TOKEN")
+usernames_file = "api/usernames.txt"
 
 
 @auth.verify_token
@@ -15,7 +16,7 @@ def verify_token(token):
 class Users(Resource):
     @auth.login_required
     def get(self):
-        usernames = get_usernames(filename="../src/usernames.txt")
+        usernames = get_usernames(filename=usernames_file)
         return {"data": {"usernames": usernames}}
 
     @auth.login_required
@@ -27,10 +28,10 @@ class Users(Resource):
         # ERRORS:
         # ''; whitespace
         passed_users = args["usernames"].split(",")
-        all_new, existing_users = check_usernames(*passed_users, filename="../src/usernames.txt")
+        all_new, existing_users = check_usernames(*passed_users, filename=usernames_file)
 
         if all(all_new):
-            add_usernames(*passed_users, current_filename="../src/usernames.txt", new_filename="../src/usernames.txt")
+            add_usernames(*passed_users, current_filename=usernames_file, new_filename=usernames_file)
             return f"Added usernames: {', '.join(passed_users)}", 201
 
         else:
@@ -45,7 +46,7 @@ class Users(Resource):
         args = users_delete_args.parse_args()
 
         passed_users = args["usernames"].split(",")
-        updated, deleted, not_found = remove_usernames(*passed_users, current_filename="../src/usernames.txt", new_filename="../src/usernames.txt")
+        updated, deleted, not_found = remove_usernames(*passed_users, current_filename=usernames_file, new_filename=usernames_file)
         deleted_message = f"Users deleted from list: {', '.join(deleted)}" if len(deleted) > 0 else ""
         not_found_message = f"Users not found in list: {', '.join(not_found)}" if len(not_found) > 0 else ""
         return f"{deleted_message}\n{not_found_message}"
