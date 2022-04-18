@@ -7,6 +7,7 @@ api-env/
 !requirements.txt
 .*
 !.docker-env
+!.dockerignore
 __py*
 test*
 server_test.py
