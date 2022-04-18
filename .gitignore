@@ -8,6 +8,7 @@ api-env/
 .*
 !.docker-env
 !.dockerignore
+env_file
 __py*
 test*
 server_test.py
