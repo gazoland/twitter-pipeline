@@ -5,7 +5,7 @@ import os
 from api.controllers.users import Users
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = os.getenv("API_DEBUG", False) in ("true", "True", "t", "T", 1)  # Local: True / Docker: False
 api = Api(
     app,
     version="1.0",
