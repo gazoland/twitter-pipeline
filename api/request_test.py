@@ -9,20 +9,23 @@ headers = {"Accept": "application/json",
 
 def test_get(resource):
     resp = requests.request("GET", url=BASE + resource, headers=headers)
-    print(resp.json())
     print(resp)
+    print(resp.text)
+    print(resp.json())
 
 
 def test_post(resource):
     resp = requests.request("POST", url=BASE + resource, headers=headers, data={"usernames": "joe,neil,john,liam"})
-    print(resp.json())
     print(resp)
+    print(resp.text)
+    print(resp.json())
 
 
 def test_delete(resource):
     resp = requests.request("DELETE", url=BASE + resource, headers=headers, data={"usernames": "john,liam,joe,neil"})
-    print(resp.json())
     print(resp)
+    print(resp.text)
+    print(resp.json())
 
 
 def test_unexisting_route(resource):
