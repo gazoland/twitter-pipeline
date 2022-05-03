@@ -58,6 +58,8 @@ The project architecture and the technologies used are shown as follows:
 
 **Apache Airflow**: orchestration duties.
 
+**Docker**: for easy setup configurations.
+
 - Airflow uses DAGs to execute tasks. The tasks are divided into 3 data groups: users, tweets and tweets metrics.
 
 ![dags](https://user-images.githubusercontent.com/68711010/163054608-c4892c31-351c-49cd-b7d4-638fce19008e.png)
