@@ -1,13 +1,15 @@
-import json
 from datetime import datetime
 from tqdm import tqdm
 import resources
 
 
-def read_user_ids(filename):
-    with open(filename, "r") as user_id_file:
-        users = json.load(user_id_file)
-    user_ids = [v for v in users.values()]
+def read_user_ids():
+    db_conn = resources.connect_to_database()
+    cur = db_conn.cursor()
+    cur.execute("SELECT username_id FROM twitter.usernames")
+    user_ids = [u[0] for u in cur.fetchall()]
+
+    db_conn.close()
     return user_ids
 
 
@@ -46,7 +48,7 @@ def user_timelines_url(user_id, last_tweet_id, pag_token):
 
 
 def ingest_tweets(ti):
-    ids = read_user_ids("user_ids.txt")
+    ids = read_user_ids()
     user_tweet = get_last_tweets(ids)
     tweets_data = {"data": []}
     for u_id, t_id in tqdm(user_tweet.items(), total=len(user_tweet.keys())):
