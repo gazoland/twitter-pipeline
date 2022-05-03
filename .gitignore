@@ -11,4 +11,5 @@ test*
 !requirements.txt
 server_test.py
 config.py
+src/create_usernames_table.py
 *.env_file
