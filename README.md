@@ -34,7 +34,7 @@ So there will be 3 different scripts for extracting this data, applying the nece
 
 The project architecture and the technologies used are shown as follows:
 
-![pipeline](https://user-images.githubusercontent.com/68711010/162328922-168c1e28-8b92-4961-b9cc-1d6a6181c83f.png)
+![new-pipeline](https://user-images.githubusercontent.com/68711010/165172954-04086660-287b-4a1f-ad66-eb3e013d5401.png)
 
 ## Technologies
 
