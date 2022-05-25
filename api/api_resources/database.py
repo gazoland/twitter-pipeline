@@ -1,6 +1,4 @@
 import psycopg2.extras
-
-import psycopg2.extras
 import os
 
 DB_HOST = os.environ.get("PG_DB_HOST")
@@ -44,5 +42,3 @@ def insert_batch(conn, multicolumn: bool, data, schema, table, conflict: bool, c
     cursor.close()
     # conn.close()
     print('Done')
-
-
