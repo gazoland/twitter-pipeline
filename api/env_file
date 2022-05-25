@@ -1,1 +1,5 @@
 API_TOKEN=<API token for authentication>
+PG_DB_HOST=<postgres host>
+PG_DB_USER=<postgres user>
+PG_DB_PWD=<postgres password>
+PG_DB_NAME=<postgres database name>
