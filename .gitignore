@@ -1,5 +1,6 @@
 twitter-env/
 api-env/
+airflow/
 __py*
 test*
 .*
