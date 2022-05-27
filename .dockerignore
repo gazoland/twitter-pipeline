@@ -1,0 +1,14 @@
+airflow/*
+api*
+twitter-env*
+*env_file
+*env
+.gitignore
+README.md
+*.pdf
+*user_ids.txt
+*-rds.txt
+*file.txt
+*guide.txt
+*config.py
+*table.py
