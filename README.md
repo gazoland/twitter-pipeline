@@ -57,9 +57,9 @@ The project architecture and the technologies used are shown as follows:
 
 **PostgreSQL**: the chosen RDBMS. Access from Python using psycopg2.
 
-**Apache Airflow**: orchestration duties.
-
 **Docker**: for easy setup configurations.
+
+**Apache Airflow**: orchestration duties.
 
 - Airflow uses DAGs to execute tasks. The tasks are divided into 3 data groups: users, tweets and tweets metrics.
 
