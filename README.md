@@ -73,4 +73,4 @@ Transformed data will be in Star Schema.
 
 ![database-schema](https://user-images.githubusercontent.com/68711010/162328942-d5031a9a-5b83-4864-80c7-d3453e1e6c95.png)
 
-- Future additions will include a Rest API for adding new Twitter users to the list and integrate it with functions on AWS Lambda.
+- Future additions will include an integration of the Rest API with AWS Lambda.
