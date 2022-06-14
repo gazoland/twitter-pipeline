@@ -39,7 +39,7 @@ The project architecture and the technologies used are shown as follows:
 
 ## Technologies
 
-**Python**: all scripts, as well as the Airflow Dags will be written in Python. Requests to the Twitter API will be made with the requests library (Bearer Token needed).
+**Python**: all scripts, as well as the Airflow Dags will be written in Python. Requests to the Twitter API will be made with the requests library (Bearer Token needed). Flask is used to code the REST-API.
 
 **AWS**: will provide all the required cloud infrastructure. Services used include:
 
